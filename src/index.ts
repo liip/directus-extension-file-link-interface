@@ -8,5 +8,6 @@ export default defineInterface({
 	description: 'This interface displays the filelink',
 	component: InterfaceComponent,
 	options: null,
+	localTypes: ['presentation'],
 	types: ['alias'],
 });
