@@ -5,6 +5,7 @@
 import { useApi } from '@directus/extensions-sdk';
 import { ref, watch, watchEffect } from 'vue';
 import { getPublicURL } from './utils';
+import { FileData, FileResponse } from './types';
 
 const props = defineProps({
   collection: {
@@ -21,19 +22,18 @@ const props = defineProps({
 });
 
 const api = useApi();
-const fileData = ref({});
-const fileLink = ref('');
-const baseUrl = getPublicURL();
+const fileData= ref<FileData | null>(null);
+const fileLink = ref<string>('');
+const baseUrl: string = getPublicURL();
 
 watchEffect(async () => {
-  const response = await api.get(`/files/?filter[id][_eq]=${props.primaryKey}`);
-  const data = response.data.data[0];
+  const response: FileResponse = await api.get(`/files/?filter[id][_eq]=${props.primaryKey}`);
+  const data: FileData = response.data.data[0];
   fileData.value = data;
 });
 
-
 watch([fileData], () => {
-  fileLink.value = `${baseUrl}assets/${fileData.value.id}/${fileData.value.filename_download}`
+  fileLink.value = `${baseUrl}assets/${fileData.value?.id}/${fileData.value?.filename_download}`
 });
 
 </script>
