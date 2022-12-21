@@ -1,8 +1,10 @@
 <template>
-	<p>{{ fileLink }}</p>
+  <p>{{ fileLink }}</p>
 </template>
 <script setup lang="ts">
-import { useApi, useStores } from '@directus/extensions-sdk';
+import { useApi } from '@directus/extensions-sdk';
+import { ref, watch, watchEffect } from 'vue';
+import { getPublicURL } from './utils';
 
 const props = defineProps({
   collection: {
@@ -19,12 +21,19 @@ const props = defineProps({
 });
 
 const api = useApi();
+const fileData = ref({});
+const fileLink = ref('');
+const baseUrl = getPublicURL();
 
-const useFieldsData = async () => {
+watchEffect(async () => {
   const response = await api.get(`/files/?filter[id][_eq]=${props.primaryKey}`);
-  return await response.data.data
-}
+  const data = response.data.data[0];
+  fileData.value = data;
+});
 
-const fieldsData = await useFieldsData()
-const fileLink = `/assets/${fieldsData[0].id}/${fieldsData[0].filename_download}`
+
+watch([fileData], () => {
+  fileLink.value = `${baseUrl}assets/${fileData.value.id}/${fileData.value.filename_download}`
+});
+
 </script>
