@@ -1,11 +1,15 @@
 <template>
-  <p>{{ fileLink }}</p>
+  <div class="container">
+    <p class="force-select">{{ fileLink }}</p>
+    <CopyButton @copy-button-click="copyToClipboard(fileLink)" />
+  </div>
 </template>
 <script setup lang="ts">
 import { useApi } from '@directus/extensions-sdk';
 import { ref, watch, watchEffect } from 'vue';
 import { getPublicURL } from './utils';
 import { FileData, FileResponse } from './types';
+import CopyButton from './CopyButton.vue'
 
 const props = defineProps({
   collection: {
@@ -36,4 +40,18 @@ watch([fileData], () => {
   fileLink.value = `${baseUrl}assets/${fileData.value?.id}/${fileData.value?.filename_download}`
 });
 
+const copyToClipboard = (text: string) => {
+  navigator.clipboard.writeText(text)
+}
 </script>
+<style>
+.container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.force-select {
+  user-select: all;
+}
+</style>
