@@ -1,7 +1,13 @@
 <template>
-  <div class="container">
-    <p class="force-select">{{ fileLink }}</p>
-    <CopyButton @copy-button-click="copyToClipboard(fileLink)" />
+  <div>
+    <div class="container">
+      <p class="force-select">{{ fileLink }}</p>
+      <CopyButton @copy-button-click="copyToClipboard(fileLink)" />
+    </div>
+    <v-notice>
+      The public file link can be used to share a file with everyone.
+      This only works if the file is public.
+    </v-notice>
   </div>
 </template>
 <script setup lang="ts">
@@ -49,6 +55,7 @@ const copyToClipboard = (text: string) => {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  margin-bottom: 20px;
 }
 
 .force-select {
