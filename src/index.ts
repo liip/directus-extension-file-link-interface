@@ -3,7 +3,7 @@ import InterfaceComponent from './interface.vue';
 
 export default defineInterface({
 	id: 'custom',
-	name: 'File Link',
+	name: 'Public-File-Link',
 	icon: 'box',
 	description: 'This interface displays the filelink',
 	component: InterfaceComponent,
