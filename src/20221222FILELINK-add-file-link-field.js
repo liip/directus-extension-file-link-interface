@@ -25,6 +25,6 @@ module.exports = {
   },
 
   async down(knex) {
-    await knex('directus_fields').where('collection', 'directus_files').del()
+    await knex('directus_fields').where('collection', 'directus_files').andWhere('field', 'file_link').del()
   },
 };
