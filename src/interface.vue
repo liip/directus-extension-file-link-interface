@@ -2,11 +2,18 @@
   <div>
     <div class="container">
       <p class="force-select">{{ fileLink }}</p>
-      <CopyButton @copy-button-click="copyToClipboard(fileLink)" />
+      <v-button
+        @click="copyToClipboard(fileLink)"
+        v-tooltip="t('copy_to_clipboard')"
+        secondary
+        x-small
+        icon
+      >
+        <v-icon name="content_copy"/>
+      </v-button>
     </div>
     <v-notice>
-      The public file link can be used to share a file with everyone.
-      This only works if the file is public.
+      {{ t('file_link_notice') }}
     </v-notice>
   </div>
 </template>
@@ -15,7 +22,7 @@ import { useApi } from '@directus/extensions-sdk';
 import { ref, watch, watchEffect } from 'vue';
 import { getPublicURL } from './utils';
 import { FileData, FileResponse } from './types';
-import CopyButton from './CopyButton.vue'
+import { useI18n } from 'vue-i18n';
 
 const props = defineProps({
   collection: {
@@ -49,6 +56,20 @@ watch([fileData], () => {
 const copyToClipboard = (text: string) => {
   navigator.clipboard.writeText(text)
 }
+
+const { t } = useI18n({
+  messages: {
+    'de-DE': {
+      'file_link_notice': 'Der öffentliche Dateilink kann verwendet werden, um eine Datei freizugeben. Dies funktioniert nur, wenn die Datei öffentlich ist.',
+      'copy_to_clipboard' : 'In Zwischenablage kopieren'
+    },
+    'en-US': {
+      'file_link_notice': 'The public file link can be used to share a file with everyone. This only works if the file is public.',
+      'copy_to_clipboard' : 'copy to clipboard'
+
+    }
+  }
+})
 </script>
 <style>
 .container {
