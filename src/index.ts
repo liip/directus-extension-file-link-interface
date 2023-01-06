@@ -5,7 +5,7 @@ export default defineInterface({
 	id: 'custom',
 	name: 'Public File Link',
 	icon: 'box',
-	description: 'This interface displays the filelink',
+	description: 'This interface displays the public link of a file on its details page.',
 	component: InterfaceComponent,
 	options: null,
 	localTypes: ['presentation'],
