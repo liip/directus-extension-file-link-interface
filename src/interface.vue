@@ -44,12 +44,12 @@ const { t } = useI18n({
   }
 })
 </script>
-<style>
+<style scoped>
 .container {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  margin-bottom: 20px;
+  margin-bottom: 1rem;
 }
 
 .force-select {
