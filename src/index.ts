@@ -10,5 +10,5 @@ export default defineInterface({
 	options: null,
 	localTypes: ['presentation'],
 	types: ['alias'],
-  group: 'presentation',
+	group: 'presentation',
 });
