@@ -38,7 +38,7 @@ const { t } = useI18n({
     },
     'en-US': {
       'file_link_notice': 'The public file link can be used to share a file with everyone. This only works if the file is public.',
-      'copy_to_clipboard' : 'copy to clipboard'
+      'copy_to_clipboard' : 'Copy to clipboard'
 
     }
   }
