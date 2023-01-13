@@ -24,10 +24,10 @@ import { useI18n } from 'vue-i18n';
 
 const baseUrl: string = getPublicURL();
 const fileData = inject('values', ref<Record<string, any>>({}));
-const fileLink: string = `${baseUrl}assets/${fileData.value?.id}/${fileData.value?.filename_download}`
+const fileLink: string = `${baseUrl}assets/${fileData.value?.id}/${fileData.value?.filename_download}`;
 
 const copyToClipboard = (text: string) => {
-  navigator.clipboard.writeText(text)
+  navigator.clipboard.writeText(text);
 }
 
 const { t } = useI18n({
@@ -42,7 +42,7 @@ const { t } = useI18n({
 
     }
   }
-})
+});
 </script>
 <style scoped>
 .container {
