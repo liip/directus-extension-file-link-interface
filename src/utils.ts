@@ -1,3 +1,4 @@
+// This helper functions are copied from here
 /**
  * Get the API root location from the current window path
  */
