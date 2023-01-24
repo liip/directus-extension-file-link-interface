@@ -44,13 +44,12 @@ const { t } = useI18n({
 			notice:
 				'Der öffentliche Dateilink kann verwendet werden, um eine Datei freizugeben. Dies funktioniert nur, wenn die Datei öffentlich ist.',
 			copy_to_clipboard: 'In Zwischenablage kopieren',
-			incompatible_collection: `Dieser Feldtyp funktioniert nur mit der 'directus_files' collection.`
+			incompatible_collection: `Dieser Feldtyp funktioniert nur mit der 'directus_files' collection.`,
 		},
 		'en-US': {
-			notice:
-				'The public file link can be used to share a file with everyone. This only works if the file is public.',
+			notice: 'The public file link can be used to share a file with everyone. This only works if the file is public.',
 			copy_to_clipboard: 'Copy to clipboard',
-			incompatible_collection: `This field type only works with the 'directus_files' collection.`
+			incompatible_collection: `This field type only works with the 'directus_files' collection.`,
 		},
 	},
 });
