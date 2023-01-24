@@ -16,7 +16,7 @@
 </template>
 
 <script setup lang="ts">
-import { defineProps, inject, ref } from 'vue';
+import { inject, ref } from 'vue';
 import { getPublicURL } from './utils/get-root-path';
 import { useI18n } from 'vue-i18n';
 
