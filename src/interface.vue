@@ -1,5 +1,5 @@
 <template>
-	<div>
+	<div v-if="isFilesCollection">
 		<div class="container">
 			<p class="force-select">{{ fileLink }}</p>
 			<v-button v-tooltip="t('copy_to_clipboard')" secondary x-small icon @click="copyToClipboard(fileLink)">
@@ -7,15 +7,25 @@
 			</v-button>
 		</div>
 		<v-notice>
-			{{ t('file_link_notice') }}
+			{{ t('notice') }}
 		</v-notice>
 	</div>
+	<p v-else>
+		{{ t('incompatible_collection') }}
+	</p>
 </template>
 
 <script setup lang="ts">
-import { inject, ref } from 'vue';
+import { defineProps, inject, ref } from 'vue';
 import { getPublicURL } from './utils/get-root-path';
 import { useI18n } from 'vue-i18n';
+
+const props = defineProps({
+	collection: {
+		type: String,
+		required: true,
+	},
+});
 
 const baseUrl: string = getPublicURL();
 const fileData = inject('values', ref<Record<string, any>>({}));
@@ -25,17 +35,22 @@ const copyToClipboard = (text: string) => {
 	navigator.clipboard.writeText(text);
 };
 
+// This interface only works with the directus_files collection
+const isFilesCollection = props.collection === 'directus_files';
+
 const { t } = useI18n({
 	messages: {
 		'de-DE': {
-			file_link_notice:
+			notice:
 				'Der öffentliche Dateilink kann verwendet werden, um eine Datei freizugeben. Dies funktioniert nur, wenn die Datei öffentlich ist.',
 			copy_to_clipboard: 'In Zwischenablage kopieren',
+			incompatible_collection: `Dieser Feldtyp funktioniert nur mit der 'directus_files' collection.`
 		},
 		'en-US': {
-			file_link_notice:
+			notice:
 				'The public file link can be used to share a file with everyone. This only works if the file is public.',
 			copy_to_clipboard: 'Copy to clipboard',
+			incompatible_collection: `This field type only works with the 'directus_files' collection.`
 		},
 	},
 });
