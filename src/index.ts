@@ -2,7 +2,7 @@ import { defineInterface } from '@directus/extensions-sdk';
 import InterfaceComponent from './interface.vue';
 
 export default defineInterface({
-	id: 'custom',
+	id: 'extension-public-file-link',
 	name: 'Public File Link',
 	icon: 'box',
 	description: 'This interface displays the public link of a file on its details page.',
