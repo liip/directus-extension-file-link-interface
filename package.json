@@ -10,7 +10,7 @@
     "type": "interface",
     "path": "dist/index.js",
     "source": "src/index.ts",
-    "host": "^9.21.2"
+    "host": "^9.22.4"
   },
   "scripts": {
     "build": "directus-extension build",
@@ -23,8 +23,8 @@
   },
   "devDependencies": {
     "directus-codestyle": "github:dimitrov-adrian/directus-codestyle",
-    "typescript": "^4.9.4",
-    "vue": "^3.2.45"
+    "typescript": "^4.9.5",
+    "vue": "^3.2.47"
   },
   "prettier": "directus-codestyle/prettier",
   "stylelint": {
