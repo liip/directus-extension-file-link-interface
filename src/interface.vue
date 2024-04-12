@@ -16,7 +16,7 @@
 </template>
 
 <script setup lang="ts">
-import { inject, ref } from 'vue';
+import { computed, inject, ref } from 'vue';
 import { getPublicURL } from './utils/get-root-path';
 import { useI18n } from 'vue-i18n';
 
@@ -29,10 +29,14 @@ const props = defineProps({
 
 const baseUrl: string = getPublicURL();
 const fileData = inject('values', ref<Record<string, any>>({}));
-const fileLink = `${baseUrl}assets/${fileData.value?.id}/${fileData.value?.filename_download}`;
+const fileLink = computed(() => `${baseUrl}assets/${fileData.value?.id}/${fileData.value?.filename_download}`);
 
-const copyToClipboard = (text: string) => {
-	navigator.clipboard.writeText(text);
+const copyToClipboard = async (text: string) => {
+	if (window.isSecureContext) {
+		await navigator.clipboard.writeText(text);
+	} else {
+		console.warn('Copying to clipboard only works with \'https://\' (see: https://w3c.github.io/clipboard-apis/#dom-navigator-clipboard)');
+	}
 };
 
 // This interface only works with the directus_files collection
